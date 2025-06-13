@@ -12,8 +12,7 @@ A Tower Defence Game I created through Zenva Academy's "Create a Tower Defence G
 
 >Built with Unity and CSharp
 
-![Screenshot of City Building Game](/assets/images/towerdefencegame.png)
-
+![towerdefencegame](/assets/images/towerdefencegame.png)
 # [City Building Game](https://kailermai.github.io/citybuildinggame/WebBuild/index.html)
 
 A City Building Game I created through Zenva Academy's "Develop a City-Building Game with Unity" Course
@@ -42,7 +41,7 @@ My old portfolio website before I changed to this website!
 
 >Built with HTML and Ruby
 
-![Screenshot of this website :p](/assets/images/portfolio-website.png)
+![](/assets/images/portfolio-website.png)
 
 # [The Odin Project Foundation Course's Projects](https://www.theodinproject.com/paths/foundations/courses/foundations)
 

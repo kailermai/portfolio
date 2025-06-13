@@ -1,0 +1,27 @@
+---
+title: Certifications
+draft: false
+tags:
+  - home
+---
+## Creating a tower defence game in Unity
+>June 2024
+-  Zenva Academy
+- Credential ID 126744738
+## Develop a City-Building Game with Unity
+> March 2024
+- Zenva Academy 
+- Credential ID 119790232
+
+## Craft a 2D Idle Clicker Game
+> March 2024
+- Zenva Academy
+- Credential ID 119404948
+
+## [AWS Getting Started with Compute Certification](https://www.credly.com/badges/f05ba33f-7507-4857-a2ad-eaf2bf78b5c2/linked_in_profile)
+>February 2024
+- AWS Educate
+
+## [AWS Educate Introduction to Cloud 101 Certification](https://www.credly.com/badges/e45e21ea-dda9-4a81-9b0a-dcf390bc3b53/linked_in_profile)
+> January 2024
+- AWS Educate

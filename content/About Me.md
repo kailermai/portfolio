@@ -1,0 +1,63 @@
+---
+title: About Me
+draft: false
+tags:
+  - home
+---
+# Education
+
+## Bachelor of Computing in Computer Science
+
+National University of Singapore
+
+> 2024 - 2028
+
+- Matriculated in 2024, Expected graduation in 2028
+- [[Mods Taken]]
+
+## National Service
+
+Sea Soldier in Navy
+
+> 2022 - 2024
+
+- Featured in Military Police & Security Trooper Recognition Day
+
+## GCE 'A' Levels
+
+River Valley High School
+
+> 2020 - 2021
+
+- Grades
+	- Distinction in H2 Chemistry, H2 Physics, H2 Economics, H2 Mathematics, H1 Chinese
+	- Pass in H3 Physics
+
+- Co-curricular activity
+	- Cross Country
+
+- Awards
+	- RV Academic Excellence Award 2022
+	- Bronze Award in Singapore Physics League 2021
+	- School Colours Award 2021
+	- Edusave Certificate of Academic Achievement 2021
+	- Cross Country Mileage Inter-School Challenge 2nd Team Placing 2021
+	- Singapore Mathematical Olympiad Certificate of Participation 2020
+
+## GCE 'O' Levels
+
+Presbyterian High School
+
+> 2016 - 2019
+
+- Co-curricular activity
+
+  - National Police Cadet Corps
+
+- Awards
+	- Sir Ong Siang Song Excellence in Uniformed Group Merit Award - National Police Cadet Corps
+	- Edusave Award for Achievement, Good Leadership and Service (EAGLES) 2019
+	- Edusave Character Award 2019
+	- Edusave Scholarship 2016-2019
+	- Best Unit Cadet by NPCC HQ 2019
+	- Young Engineer Award (Bronze) by STEM inc in 2016

@@ -1,0 +1,27 @@
+---
+title: Mods Taken
+draft: false
+tags:
+  - home
+---
+# Y1S1 (AY 24/25, Sem 1)
+- CS1101S Programming Methodology
+- CS1231S Discrete Structures
+- IS1108 Digital Ethics and Data Privacy
+- MA1522 Linear Algebra for Computing
+- GEA1000 Quantitative Reasoning with Data
+- CFG1003 Financial Wellbeing - Introduction
+- CFG1004 Financial Wellbeing - Art and Science of Investing
+
+# Y1S2 (AY 24/25, Sem 2)
+- CS2030S Programming Methodology II
+- CS2040S Data Structures and Algorithms
+- MA1521 Calculus for Computing
+- ES2660 Communicating in the Information Age
+- HSI1000 How Science Works, Why Science Works
+- LSM1303 Animal behaviour
+- CFG1002 Career Catalyst
+
+# Y1 Special Term
+- CP2106 Independent Software Development Project (Orbital)
+- Technical Interview Preparation - Summer 2025

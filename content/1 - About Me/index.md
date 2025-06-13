@@ -1,14 +1,9 @@
 ---
-title: Home
+title: 1 - About Me
 tags:
+  - about
   - home
 ---
-Hi!
-
-I am Kai Ler, currently a Year 2 undergraduate in NUS Computer Science
-
-Here is where I store my progress in my computing career
-
 > [1.1- Education](content/1%20-%20About%20Me/1.1-%20Education.md)
 
 > [1.2 - Mods Taken](content/1%20-%20About%20Me/1.2%20-%20Mods%20Taken.md)

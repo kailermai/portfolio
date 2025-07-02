@@ -9,7 +9,7 @@ I am Kai Ler, an incoming Year 2 undergraduate in NUS Computer Science
 
 Here is where I store my progress in my computing career
 
-> [1.1- Education](1%20-%20About%20Me/1.1-%20Education.md)
+> [1.1 - Education](1%20-%20About%20Me/1.1%20-%20Education.md)
 
 > [1.2 - Mods Taken](1%20-%20About%20Me/1.2%20-%20Mods%20Taken.md)
 

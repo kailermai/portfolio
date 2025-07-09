@@ -1,5 +1,5 @@
 ---
-title: 4 - Notes
+title: 4 - General Notes
 tags:
   - home
   - notes

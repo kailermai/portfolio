@@ -13,10 +13,10 @@ We maintained two separate GitHub Repositories, one for our main application wit
 
 
 *Screenshot of our main repository hosting our mobile application*
-![](../../assets/default/Pasted%20image%2020250730144508.png)
+![](/assets/default/Pasted%20image%2020250730144508.png)
 
 *Screenshot of our backend repository for Python FastAPI*
-![](../../assets/default/Pasted%20image%2020250730144518.png)
+![](/assets/default/Pasted%20image%2020250730144518.png)
 
 # Why Flutter?
 Initially, we were deciding between React Native or Flutter. However, we decided to go with Flutter for various reasons.

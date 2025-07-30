@@ -5,7 +5,7 @@ tags:
   - notes
 ---
 # NUSPlan
-![](../../assets/default/Pasted%20image%2020250730143531.png)
+![](/assets/default/Pasted%20image%2020250730143531.png)
 An all-in-one productivity android application designed for NUS students, to improve academic schedule management and boost student productivity. This project is developed under the CP2106 Independent Software Development Project, otherwise known as [Orbital](https://nusmods.com/courses/CP2106/independent-software-development-project-orbital). We attained the second highest level of achievement, Apollo 11.
 ## Submission Links
 - [Project README](https://docs.google.com/document/d/1RB-U6E3cP6p3Z3mIb3fb3DxLHhjlRyaRGZk0QMqQzHY/edit?tab=t.0)

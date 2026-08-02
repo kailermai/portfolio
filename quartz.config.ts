@@ -17,7 +17,15 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "kailermai.github.io/portfolio/",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: [
+      "private",
+      "templates",
+      ".obsidian",
+      "4 - General Notes/**",
+      "5 - Leetcode Notes/**",
+      "6 - School Notes/**",
+      "7 - Go Notes/**",
+    ],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",

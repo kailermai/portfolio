@@ -5,7 +5,7 @@ tags:
 ---
 Hi!
 
-I am Kai Ler, an incoming Year 2 undergraduate in NUS Computer Science
+I am Kai Ler, an incoming Year 3 undergraduate in NUS Computer Science
 
 Here is where I store my progress in my computing career
 

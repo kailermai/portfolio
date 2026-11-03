@@ -35,10 +35,10 @@ page is pre-rendered to HTML at build time. Content comes from two places:
 ├── public/                   # Static files copied verbatim to the site root
 │   ├── favicon.svg
 │   └── assets/               # Images used by markdown (served at /portfolio/assets/…)
-│       ├── images/           #   project & Odin screenshots
+│       ├── images/           #   project screenshots
 │       └── default/          #   blog (NUSPlan) screenshots
 └── src/
-    ├── content.config.ts     # Collection schemas + WRITING_CATEGORIES metadata
+    ├── content.config.ts     # Content collection schemas (projects, blog)
     ├── data/
     │   └── site.ts           # ← EDIT: all structured home-page data
     ├── content/              # ← EDIT: markdown content
@@ -82,15 +82,15 @@ order: 1                           # lower = earlier in the grid
 Optional markdown body (not shown on the card today).
 ```
 
-### Add a blog post or Odin page
+### Add a blog post
 
-Drop a markdown file in `src/content/blog/` or `src/content/odin/`. Shared
-frontmatter schema (`src/content.config.ts` → `writingSchema`):
+Drop a markdown file in `src/content/blog/`. Frontmatter schema
+(`src/content.config.ts` → `writingSchema`):
 
 ```md
 ---
 title: "Post title"
-description: "Shown on the category index and as the meta description."
+description: "Shown on the blog index and as the page/social meta description."
 tags: [tag1, tag2]
 order: 1          # optional; lower sorts first, else alphabetical by title
 draft: false      # set true to exclude from the published build
@@ -99,8 +99,9 @@ Markdown body…
 ```
 
 The file name becomes the URL slug, e.g. `src/content/blog/my-post.md` →
-`/portfolio/blog/my-post`. The category index page lists every non-draft entry
-automatically — no extra wiring needed.
+`/portfolio/blog/my-post`. The blog index (`/blog`) lists every non-draft entry
+automatically, and an OG social image is generated for it automatically — no
+extra wiring needed. Nothing else to touch.
 
 ### Edit structured home-page content
 
@@ -108,14 +109,27 @@ Everything else on the home page (name, role, experience, education, modules,
 certifications, activities) lives in `src/data/site.ts` as typed arrays. Edit the
 data; the home page re-renders from it.
 
-### Add a brand-new writing category (e.g. "notes")
+### Add a brand-new content section (e.g. "notes")
 
-1. Add a collection in `src/content.config.ts` (copy the `blog` block, rename).
-2. Add it to the `collections` export and the `WRITING_CATEGORIES` array.
-3. Create `src/pages/<slug>/index.astro` and `src/pages/<slug>/[...slug].astro`
-   (copy the `blog/` pair and change the collection name + category label).
-4. Add a nav link in `src/layouts/Base.astro` and (optionally) a card in the
-   home page "Writing" section (`src/pages/index.astro`).
+Currently `blog` is the only writing collection (`projects` is the other
+collection, rendered as home-page cards). To add a whole new section:
+
+1. In `src/content.config.ts`: define a new collection (copy the `blog` block,
+   rename it, reuse `writingSchema`) and add it to the `collections` export.
+2. Create the route pair by copying `src/pages/blog/`:
+   - `src/pages/<slug>/index.astro` — the listing page
+   - `src/pages/<slug>/[...slug].astro` — the per-entry page
+   In both, change `getCollection('blog', …)` to your new collection name and
+   update the category label passed to `Article` (and the page titles).
+3. Add the markdown files under `src/content/<slug>/`.
+4. Add a nav link in `src/layouts/Base.astro` (follow the existing
+   `${base}/blog` pattern — see the Guardrails section about base paths).
+5. (Optional) To generate OG images for the new entries, extend the `pages` map
+   in `src/pages/og/[...route].ts` the same way blog entries are added there.
+
+> There is no central category registry to update — each section is just a
+> collection + a route pair + a nav link. (An earlier `WRITING_CATEGORIES`
+> constant was removed; don't look for it.)
 
 ### Images in markdown
 
@@ -130,6 +144,36 @@ Do **not** hardcode `/portfolio/` — the `rehype-base-assets` plugin
 URLs with the configured `base` at build time, so links keep working whether the
 base is `/portfolio` or `/`. For links **between markdown pages**, use relative
 paths (e.g. `[see](../other-post)`), which are base-independent.
+
+---
+
+## Guardrails — how not to break things
+
+Read these before making changes:
+
+- **Base path / URLs.** The site is served from the `/portfolio/` subpath, so
+  **never hardcode absolute paths** like `/blog` or `/assets/...` in `.astro`
+  files. Build URLs from the base: `const base = import.meta.env.BASE_URL.replace(/\/$/, '')`
+  then `` `${base}/blog` ``. In markdown, use root-absolute `/assets/...` for
+  images (the rehype plugin prefixes the base) and **relative** links between
+  pages (e.g. `../other-post`). This is the #1 source of past breakage.
+- **Always verify a build before pushing:** `npm run build`. The build is
+  type-checked and will fail on a bad content schema, broken import, or missing
+  collection — treat a green build as the minimum bar. A push to `main`
+  auto-deploys, so a broken push breaks the live site.
+- **Don't rename or remove** `src/content.config.ts` collection keys
+  (`projects`, `blog`) without updating every `getCollection('<key>')` call and
+  the matching `src/pages/<key>/` routes.
+- **Frontmatter must match the schema** in `src/content.config.ts`. Missing a
+  required field (e.g. a project without `title`/`description`) fails the build.
+- **`draft: true`** keeps an entry out of the published site — use it for
+  work-in-progress rather than deleting.
+- **Don't touch the `v4` branch** — it's the archived original Quartz site kept
+  as a backup. All work happens on `main`.
+- **Images:** put files in `public/assets/…` (served verbatim). Don't put them
+  in `src/` expecting them to be copied.
+- **Keep `base` (astro.config.mjs) and the OG `Astro.site` URL in sync** if the
+  hosting ever changes (see Deployment).
 
 ---
 

@@ -8,7 +8,9 @@ interface Props {
 }
 
 const { title = site.name, description = site.tagline } = Astro.props;
-const base = import.meta.env.BASE_URL;
+// Normalize base so it never has a trailing slash; build URLs as `${base}/path`.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = base || '/';
 ---
 
 <!doctype html>
@@ -21,7 +23,7 @@ const base = import.meta.env.BASE_URL;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -38,12 +40,11 @@ const base = import.meta.env.BASE_URL;
   <body>
     <nav class="nav">
       <div class="nav-inner">
-        <a href={base} class="nav-brand">{site.name}</a>
+        <a href={home} class="nav-brand">{site.name}</a>
         <div class="nav-links">
-          <a href={`${base}#projects`}>Projects</a>
-          <a href={`${base}#education`}>Education</a>
-          <a href={`${base}blog`}>Blog</a>
-          <a href={`${base}odin`}>Odin</a>
+          <a href={`${home}#projects`}>Projects</a>
+          <a href={`${home}#education`}>Education</a>
+          <a href={`${base}/writing`}>Writing</a>
           <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
         </div>
       </div>

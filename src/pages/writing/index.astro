@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// One card per writing category. To add a category, add an entry here and make
+// sure a matching collection + src/pages/<slug>/ route pair exists.
+const categories = [
+  {
+    slug: 'blog',
+    name: 'Blog',
+    description: 'Thoughts and write-ups from events and projects.',
+    collection: 'blog' as const,
+  },
+  {
+    slug: 'odin',
+    name: 'The Odin Project',
+    description: 'Projects I built while working through The Odin Project curriculum.',
+    collection: 'odin' as const,
+  },
+];
+
+const withCounts = await Promise.all(
+  categories.map(async (c) => {
+    const entries = await getCollection(c.collection, ({ data }) => !data.draft);
+    return { ...c, count: entries.length };
+  })
+);
+---
+
+<Base title="Writing · Kai Ler Mai" description="Blog posts, notes, and project write-ups.">
+  <section>
+    <div class="wrap">
+      <nav class="crumbs"><a href={`${base}/`}>Home</a><span>/</span><span class="current">Writing</span></nav>
+      <h1 class="section-title">Writing</h1>
+      <p class="section-sub">Blog posts and project write-ups, grouped by topic.</p>
+      <div class="grid">
+        {withCounts.map((c) => (
+          <a class="card" href={`${base}/${c.slug}`}>
+            <h3>{c.name} →</h3>
+            <p class="desc">{c.description}</p>
+            <span class="badge">{c.count} {c.count === 1 ? 'entry' : 'entries'}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

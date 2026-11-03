@@ -135,7 +135,7 @@ paths (e.g. `[see](../other-post)`), which are base-independent.
 
 ## Deployment
 
-Pushing to the `astro-revamp` branch triggers
+Pushing to the `main` branch triggers
 `.github/workflows/deploy.yml`, which runs `npm ci && npm run build` and publishes
 `./dist` to GitHub Pages. The site serves at **https://kailermai.github.io/portfolio/**.
 

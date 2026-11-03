@@ -45,7 +45,7 @@ const usedCategories = CATEGORY_ORDER.filter((c) =>
   <section id="experience">
     <div class="wrap">
       <h2 class="section-title">Experience</h2>
-      <p class="section-sub">Where I've worked and served.</p>
+      <p class="section-sub">Where I've worked and what's next.</p>
       <div class="timeline">
         {experience.map((e) => (
           <div class="tl-item">
@@ -81,13 +81,15 @@ const usedCategories = CATEGORY_ORDER.filter((c) =>
       <div class="grid" id="project-grid">
         {projects.map((p) => (
           <article
-            class={`card ${p.data.featured ? 'featured' : ''}`}
+            class="card"
             data-category={p.data.category}
           >
-            {p.data.image && (
-              <img class="card-img" src={`${base}${p.data.image}`} alt={p.data.title} loading="lazy" />
-            )}
-            <h3>{p.data.title}</h3>
+            <div class="card-heading">
+              <h3>{p.data.title}</h3>
+              {p.data.image && (
+                <img class="card-img" src={`${base}${p.data.image}`} alt={p.data.title} loading="lazy" />
+              )}
+            </div>
             <p class="desc">{p.data.description}</p>
             {p.data.tech.length > 0 && (
               <div class="tags">
@@ -139,12 +141,15 @@ const usedCategories = CATEGORY_ORDER.filter((c) =>
   <!-- Modules -->
   <section id="modules">
     <div class="wrap">
-      <h2 class="section-title">Modules Taken</h2>
-      <p class="section-sub">NUS Computer Science coursework by semester.</p>
+      <h2 class="section-title">Coursework</h2>
+      <p class="section-sub">Current modules and past coursework at NUS.</p>
       <div class="mods-grid">
         {modules.map((m) => (
-          <div class="mod-block">
-            <h4>{m.semester}</h4>
+          <div class:list={['mod-block', { current: m.current }]}>
+            <h3>
+              {m.semester}
+              {m.current && <span class="course-status">Currently taking</span>}
+            </h3>
             <ul>
               {m.mods.map((mod) => <li>{mod}</li>)}
             </ul>
@@ -224,29 +229,6 @@ const usedCategories = CATEGORY_ORDER.filter((c) =>
         });
         if (noResults) noResults.hidden = visible !== 0;
       });
-    })();
-
-    // --- Scroll fade-in (respects reduced motion) ---
-    (() => {
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const targets = document.querySelectorAll('section, .hero');
-      if (reduce || !('IntersectionObserver' in window)) {
-        targets.forEach((t) => t.classList.add('in-view'));
-        return;
-      }
-      targets.forEach((t) => t.classList.add('reveal'));
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in-view');
-              io.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-      targets.forEach((t) => io.observe(t));
     })();
 
     // --- Active section highlight in nav ---

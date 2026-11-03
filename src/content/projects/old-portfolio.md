@@ -6,8 +6,6 @@ category: Web
 order: 8
 image: /assets/images/portfolio-website.png
 links:
-  - label: Live Site
-    url: https://kailermai.github.io/
   - label: GitHub
     url: https://github.com/kailermai/kailermai.github.io
 ---

@@ -1,4 +1,4 @@
-# Portfolio — Kai Ler Mai
+# Portfolio — Mai Kai Ler
 
 Personal portfolio and writing site, built with [Astro](https://astro.build/).
 
@@ -16,6 +16,9 @@ npm run preview  # preview the production build locally
 ```
 
 > Node 22 is expected (see the GitHub Actions workflow). Astro requires Node 18+.
+
+When developing in WSL from a Windows-mounted drive (`/mnt/...`), Vite uses
+file polling so edits reliably refresh the local preview.
 
 ---
 
@@ -77,7 +80,6 @@ tech: [TypeScript, React]          # tag chips shown on the card
 category: Web                      # filter bucket: Web | Mobile | Games | Tools | Other
 links:                             # optional external links
   - { label: "GitHub", url: "https://github.com/…" }
-featured: true                     # highlight with accent border
 order: 1                           # lower = earlier in the grid
 image: /assets/images/foo.png      # optional card screenshot (in public/assets/)
 ---
@@ -109,7 +111,8 @@ extra wiring needed. Nothing else to touch.
 
 Everything else on the home page (name, role, experience, education, modules,
 certifications, activities) lives in `src/data/site.ts` as typed arrays. Edit the
-data; the home page re-renders from it.
+data; the home page re-renders from it. For the current semester, set
+`current: true` on its modules group to display the "Currently taking" label.
 
 ### Add a brand-new content section (e.g. "notes")
 
@@ -214,7 +217,8 @@ section.
 ## Built-in features
 
 - **Dark / light theme** toggle (persisted in `localStorage`), set before paint
-  to avoid a flash. See the inline scripts in `src/layouts/Base.astro`.
+  to avoid a flash. Defaults to light mode on the first visit. See the inline
+  scripts in `src/layouts/Base.astro`.
 - **Project category filtering** — the Projects section renders one filter
   button per `category` that has projects (Web / Mobile / Games / Tools / Other),
   plus "All". Clicking filters the grid (vanilla JS in `src/pages/index.astro`,
@@ -222,9 +226,6 @@ section.
   frontmatter field. This is deliberately a small, meaningful set of buckets
   rather than a button per tech tag (which produced 20+ buttons). The detailed
   `tech` chips still show on each card.
-- **Scroll reveal** — sections fade in on scroll via `IntersectionObserver`,
-  disabled under `prefers-reduced-motion`. Classes `.reveal` / `.in-view` in
-  `global.css`; the class is added by JS so no-JS users still see all content.
 - **Active-section nav highlight** — the nav link for the section in view gets
   an `.active` class as you scroll.
 - **Auto-generated OG social images** — `src/pages/og/[...route].ts` uses

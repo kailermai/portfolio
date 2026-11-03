@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Kai Ler&#039;s Portfolio</title>
+      <link>https://kailermai.github.io/portfolio/</link>
+      <description>Last 10 notes on Kai Ler&#039;s Portfolio</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>1.1 - About Me</title>
+    <link>https://kailermai.github.io/portfolio/1---About-Me/1.1---About-Me</link>
+    <guid>https://kailermai.github.io/portfolio/1---About-Me/1.1---About-Me</guid>
+    <description><![CDATA[ TikTok, Software Engineer Intern (Dev Infra) January 2026 - December 2026 Education Bachelor of Computing in Computer Science National University of Singapore 2024 - 2028 Matriculated in 2024, Expected graduation in 2028 AY2024/2025 Semester 2 Dean’s List CS2103/T Software Engineering: Top 5% scorer... ]]></description>
+    <pubDate>Sat, 07 Mar 2026 14:20:00 GMT</pubDate>
+  </item><item>
+    <title>1.2 - Mods Taken</title>
+    <link>https://kailermai.github.io/portfolio/1---About-Me/1.2---Mods-Taken</link>
+    <guid>https://kailermai.github.io/portfolio/1---About-Me/1.2---Mods-Taken</guid>
+    <description><![CDATA[ Y1S1 (AY 24/25, Sem 1) CS1101S Programming Methodology CS1231S Discrete Structures IS1108 Digital Ethics and Data Privacy MA1522 Linear Algebra for Computing GEA1000 Quantitative Reasoning with Data CFG1003 Financial Wellbeing - Introduction CFG1004 Financial Wellbeing - Art and Science of Investing... ]]></description>
+    <pubDate>Sat, 07 Mar 2026 14:20:00 GMT</pubDate>
+  </item><item>
+    <title>1.5 - Co-curricular Activities</title>
+    <link>https://kailermai.github.io/portfolio/1---About-Me/1.5---Co-curricular-Activities</link>
+    <guid>https://kailermai.github.io/portfolio/1---About-Me/1.5---Co-curricular-Activities</guid>
+    <description><![CDATA[ DSTA BrainHack TIL-AI 2026 June 2026 Grand Finalist, Top 6 out of 68 teams (Advanced Track) Citadel Terminal Spring 2026 (APAC) April 2026 13th place Hack&amp;Roll 2026 Jan 2026 Devpost Link PSA CodeSprint 2025 October 2025 GovTech Singapore AI CTF 2025 October 2025 TikTok TechJam 2025 August 2025 G... ]]></description>
+    <pubDate>Sat, 07 Mar 2026 14:20:00 GMT</pubDate>
+  </item><item>
+    <title>Home</title>
+    <link>https://kailermai.github.io/portfolio/</link>
+    <guid>https://kailermai.github.io/portfolio/</guid>
+    <description><![CDATA[ Hi! I am Kai Ler, an incoming Year 2 undergraduate in NUS Computer Science Here is where I store my progress in my computing career 1.1 - About Me 1.2 - Mods Taken 1.3 - Projects 1.4 - Certifications 1.5 - Co-curricular Activities GitHub || LinkedIn. ]]></description>
+    <pubDate>Sat, 07 Mar 2026 14:20:00 GMT</pubDate>
+  </item><item>
+    <title>NUSPlan - README</title>
+    <link>https://kailermai.github.io/portfolio/2---Blogs/2.2---NUSPlan/NUSPlan---README</link>
+    <guid>https://kailermai.github.io/portfolio/2---Blogs/2.2---NUSPlan/NUSPlan---README</guid>
+    <description><![CDATA[ NUSPlan An all-in-one productivity android application designed for NUS students, to improve academic schedule management and boost student productivity. ]]></description>
+    <pubDate>Wed, 30 Jul 2025 07:35:51 GMT</pubDate>
+  </item><item>
+    <title>NUSPlan - Why we chose this Tech Stack</title>
+    <link>https://kailermai.github.io/portfolio/2---Blogs/2.2---NUSPlan/NUSPlan---Why-we-chose-this-Tech-Stack</link>
+    <guid>https://kailermai.github.io/portfolio/2---Blogs/2.2---NUSPlan/NUSPlan---Why-we-chose-this-Tech-Stack</guid>
+    <description><![CDATA[ General Structure To build our mobile application, we used flutter for our frontend, accompanied with Firebase as our backend and database. ]]></description>
+    <pubDate>Wed, 30 Jul 2025 07:35:51 GMT</pubDate>
+  </item><item>
+    <title>1.3 - Projects</title>
+    <link>https://kailermai.github.io/portfolio/1---About-Me/1.3---Projects</link>
+    <guid>https://kailermai.github.io/portfolio/1---About-Me/1.3---Projects</guid>
+    <description><![CDATA[ NUS Grades Tracker A local-first desktop application for NUS Computer Science students to track their GPA and audit their degree progress. ]]></description>
+    <pubDate>Wed, 30 Jul 2025 07:23:19 GMT</pubDate>
+  </item><item>
+    <title>Threadly - README</title>
+    <link>https://kailermai.github.io/portfolio/2---Blogs/2.1---Threadly/Threadly---README</link>
+    <guid>https://kailermai.github.io/portfolio/2---Blogs/2.1---Threadly/Threadly---README</guid>
+    <description><![CDATA[ Threadly A web forum developed for CVWO Winter Assignment AY2425. ]]></description>
+    <pubDate>Wed, 30 Jul 2025 07:20:52 GMT</pubDate>
+  </item><item>
+    <title>2.1 - Threadly</title>
+    <link>https://kailermai.github.io/portfolio/2---Blogs/2.1---Threadly/</link>
+    <guid>https://kailermai.github.io/portfolio/2---Blogs/2.1---Threadly/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 30 Jul 2025 07:20:52 GMT</pubDate>
+  </item><item>
+    <title>2.2 - NUSPlan</title>
+    <link>https://kailermai.github.io/portfolio/2---Blogs/2.2---NUSPlan/</link>
+    <guid>https://kailermai.github.io/portfolio/2---Blogs/2.2---NUSPlan/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 30 Jul 2025 07:20:52 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

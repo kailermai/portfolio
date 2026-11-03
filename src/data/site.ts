@@ -4,10 +4,10 @@
 // -----------------------------------------------------------------------------
 
 export const site = {
-  name: 'Kai Ler Mai',
-  role: 'Computer Science @ NUS · Incoming SWE Intern @ TikTok',
+  name: 'Mai Kai Ler',
+  role: 'SWE Intern @ TikTok · Incoming SWE Intern @ Squarepoint Capital',
   tagline:
-    'Year 3 Computer Science undergraduate at NUS. I build software, compete in hackathons & CTFs, and ship things I care about.',
+    "I’m a Year 3 Computer Science undergraduate at NUS, passionate about software engineering and planning to specialise in networking and databases.",
   email: '', // add if you want a mailto link
   socials: [
     { label: 'GitHub', url: 'https://github.com/kailermai' },
@@ -31,15 +31,14 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
+    role: 'Software Engineer Intern',
+    org: 'Squarepoint Capital',
+    period: 'Incoming',
+  },
+  {
     role: 'Software Engineer Intern (Dev Infra)',
     org: 'TikTok',
     period: 'January 2026 – December 2026',
-  },
-  {
-    role: 'Sea Soldier',
-    org: 'Republic of Singapore Navy — National Service',
-    period: '2022 – 2024',
-    points: ['Featured in Military Police & Security Trooper Recognition Day'],
   },
 ];
 
@@ -69,35 +68,21 @@ export const education: EducationItem[] = [
       },
     ],
   },
-  {
-    degree: "GCE 'A' Levels",
-    school: 'River Valley High School',
-    period: '2020 – 2021',
-    points: [
-      {
-        text: 'Distinctions in H2 Chemistry, Physics, Economics, Mathematics, H1 Chinese; Pass in H3 Physics',
-      },
-      { text: 'RV Academic Excellence Award 2022' },
-      { text: 'Bronze Award, Singapore Physics League 2021' },
-      { text: 'School Colours Award 2021' },
-      { text: 'CCA: Cross Country' },
-    ],
-  },
-  {
-    degree: "GCE 'O' Levels",
-    school: 'Presbyterian High School',
-    period: '2016 – 2019',
-    points: [
-      { text: 'Sir Ong Siang Song Excellence in Uniformed Group Merit Award — NPCC' },
-      { text: 'EAGLES Award 2019 · Edusave Character Award 2019' },
-      { text: 'Best Unit Cadet by NPCC HQ 2019' },
-      { text: 'CCA: National Police Cadet Corps' },
-    ],
-  },
 ];
 
 // Modules grouped by semester
-export const modules: { semester: string; mods: string[] }[] = [
+export const modules: { semester: string; current?: boolean; mods: string[] }[] = [
+  {
+    semester: 'Y3S1 (AY26/27, Sem 1)',
+    current: true,
+    mods: [
+      'CFG3001 Career Advancement',
+      'FSC2101 Forensic Science',
+      'ST2334 Probability and Statistics',
+      'CS2106 Introduction to Operating Systems',
+      'CS4225 Big Data Systems for Data Science',
+    ],
+  },
   {
     semester: 'Y1S1 (AY24/25, Sem 1)',
     mods: [

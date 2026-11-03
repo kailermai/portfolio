@@ -12,6 +12,15 @@ export default defineConfig({
   site: 'https://kailermai.github.io',
   base: BASE,
   integrations: [mdx(), sitemap()],
+  vite: {
+    server: {
+      watch: {
+        // WSL can miss file events on Windows-mounted drives, leaving stale pages.
+        usePolling: process.platform === 'linux' && process.cwd().startsWith('/mnt/'),
+        interval: 300,
+      },
+    },
+  },
   markdown: {
     // Rewrite /assets/... URLs in markdown to include the base path.
     rehypePlugins: [[rehypeBaseAssets, { base: BASE }]],

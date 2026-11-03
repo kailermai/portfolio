@@ -232,3 +232,11 @@ section.
   build time. `Base.astro` emits the Open Graph + Twitter meta tags. To give a
   page its own card, pass `ogId` to `Base`/`Article` and add a matching entry in
   the OG route's `pages` map.
+- **Custom 404 page** — `src/pages/404.astro` builds to `dist/404.html`, which
+  GitHub Pages automatically serves for unknown URLs. It reuses the site layout.
+- **Analytics (opt-in, GoatCounter)** — privacy-friendly, cookie-free. Disabled
+  by default. To turn it on: create a free account at
+  [goatcounter.com](https://www.goatcounter.com/) and set `goatCounterCode` in
+  `src/data/site.ts` to your site code (the `YOURCODE` in
+  `YOURCODE.goatcounter.com`). The tracking script in `Base.astro` is only
+  emitted when that value is non-empty, so leaving it blank ships no analytics.

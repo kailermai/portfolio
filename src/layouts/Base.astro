@@ -91,5 +91,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         setIcon();
       });
     </script>
+
+    {/* Analytics — only emitted when a GoatCounter code is configured in site.ts */}
+    {site.goatCounterCode && (
+      <script
+        is:inline
+        data-goatcounter={`https://${site.goatCounterCode}.goatcounter.com/count`}
+        async
+        src="//gc.zgo.at/count.js"
+      />
+    )}
   </body>
 </html>

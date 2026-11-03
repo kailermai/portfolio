@@ -13,6 +13,13 @@ export const site = {
     { label: 'GitHub', url: 'https://github.com/kailermai' },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/kai-ler-mai/' },
   ],
+  // ---------------------------------------------------------------------------
+  // Analytics (GoatCounter — free, privacy-friendly, no cookie banner needed).
+  // To enable: sign up at https://www.goatcounter.com/, then set `goatCounterCode`
+  // to your site code (the subdomain of YOURCODE.goatcounter.com). Leave it empty
+  // to disable analytics entirely (the script is only emitted when set).
+  // ---------------------------------------------------------------------------
+  goatCounterCode: '', // e.g. 'kailermai'
 };
 
 export type Experience = {

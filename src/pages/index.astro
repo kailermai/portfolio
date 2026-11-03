@@ -1,0 +1,174 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import {
+  site,
+  experience,
+  education,
+  modules,
+  certifications,
+  activities,
+} from '../data/site';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<Base>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Hi, I'm</p>
+      <h1>{site.name}</h1>
+      <p class="role">{site.role}</p>
+      <p class="tagline">{site.tagline}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">View my work</a>
+        {site.socials.map((s) => (
+          <a class="btn btn-ghost" href={s.url} target="_blank" rel="noopener">{s.label}</a>
+        ))}
+      </div>
+    </div>
+  </header>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="wrap">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-sub">Where I've worked and served.</p>
+      <div class="timeline">
+        {experience.map((e) => (
+          <div class="tl-item">
+            <div class="tl-head">
+              <div>
+                <span class="tl-role">{e.role}</span>
+                <span class="tl-org"> · {e.org}</span>
+              </div>
+              <span class="tl-period">{e.period}</span>
+            </div>
+            {e.points && (
+              <ul class="tl-points">
+                {e.points.map((p) => <li>{p}</li>)}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="wrap">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Things I've built — add a new one by dropping a markdown file in <code>src/content/projects/</code>.</p>
+      <div class="grid">
+        {projects.map((p) => (
+          <article class={`card ${p.data.featured ? 'featured' : ''}`}>
+            <h3>{p.data.title}</h3>
+            <p class="desc">{p.data.description}</p>
+            {p.data.tech.length > 0 && (
+              <div class="tags">
+                {p.data.tech.map((t) => <span class="tag">{t}</span>)}
+              </div>
+            )}
+            {p.data.links.length > 0 && (
+              <div class="card-links">
+                {p.data.links.map((l) => (
+                  <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>
+                ))}
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="wrap">
+      <h2 class="section-title">Education</h2>
+      <p class="section-sub">My academic journey and achievements.</p>
+      <div class="timeline">
+        {education.map((e) => (
+          <div class="tl-item">
+            <div class="tl-head">
+              <div>
+                <span class="tl-role">{e.degree}</span>
+                <span class="tl-org"> · {e.school}</span>
+              </div>
+              <span class="tl-period">{e.period}</span>
+            </div>
+            {e.points && (
+              <ul class="tl-points">
+                {e.points.map((p) => (
+                  <li>{p.url ? <a href={p.url} target="_blank" rel="noopener">{p.text} ↗</a> : p.text}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Modules -->
+  <section id="modules">
+    <div class="wrap">
+      <h2 class="section-title">Modules Taken</h2>
+      <p class="section-sub">NUS Computer Science coursework by semester.</p>
+      <div class="mods-grid">
+        {modules.map((m) => (
+          <div class="mod-block">
+            <h4>{m.semester}</h4>
+            <ul>
+              {m.mods.map((mod) => <li>{mod}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <div class="wrap">
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-sub">Credentials I've earned.</p>
+      <div class="list-grid">
+        {certifications.map((c) => (
+          <div class="mini">
+            <div class="t">
+              {c.url ? <a href={c.url} target="_blank" rel="noopener">{c.name} ↗</a> : c.name}
+            </div>
+            <div class="m">{c.issuer} · <span class="date">{c.date}</span></div>
+            {c.credentialId && <span class="badge">ID: {c.credentialId}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Activities -->
+  <section id="activities">
+    <div class="wrap">
+      <h2 class="section-title">Hackathons, CTFs &amp; Activities</h2>
+      <p class="section-sub">Competitions and co-curriculars I've taken part in.</p>
+      <div class="list-grid">
+        {activities.map((a) => (
+          <div class="mini">
+            <div class="t">{a.name}</div>
+            <div class="m"><span class="date">{a.date}</span>{a.note ? ` · ${a.note}` : ''}</div>
+            {a.links && (
+              <div class="links">
+                {a.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>)}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

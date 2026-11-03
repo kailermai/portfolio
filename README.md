@@ -1,18 +1,33 @@
-# Quartz v4
+# Portfolio — Kai Ler Mai
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+My personal portfolio, built with [Astro](https://astro.build/).
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
-Quartz v4 features a from-the-ground rewrite focusing on end-user extensibility and ease-of-use.
+Live site: **https://kailermai.github.io/portfolio/**
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+## Editing content
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+Most content is data-driven and easy to maintain:
 
-## Sponsors
+- **Experience, education, modules, certifications, activities** — edit `src/data/site.ts`
+- **Projects** — add or edit a markdown file in `src/content/projects/`. Each file has frontmatter (`title`, `description`, `tech`, `links`, `featured`, `order`) and an optional markdown body.
+- **Styling / theme colors** — `src/styles/global.css`
+- **Layout (nav, footer)** — `src/layouts/Base.astro`
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+## Local development
+
+```sh
+npm install      # install dependencies
+npm run dev      # start dev server at localhost:4321
+npm run build    # production build to ./dist
+npm run preview  # preview the production build
+```
+
+## Deployment
+
+Pushing to the `astro-revamp` branch triggers the GitHub Actions workflow
+(`.github/workflows/deploy.yml`), which builds the site and deploys it to
+GitHub Pages.
+
+> **Note:** the `base` path in `astro.config.mjs` is set to `/portfolio` so the
+> site serves correctly at `kailermai.github.io/portfolio/`. If you later move to
+> a custom domain or a user-page repo, remove the `base` option.

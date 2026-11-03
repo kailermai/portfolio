@@ -6,16 +6,14 @@ import { glob } from 'astro/loaders';
 //
 // `projects` is data-driven cards shown on the home page.
 //
-// `blog` and `odin` are the public "writing" sections, ported from the old
-// Quartz site. NOTE: the old Quartz site hid several folders via
-// `ignorePatterns` (General Notes, Leetcode Notes, School Notes, Go Notes) —
-// those were private and are intentionally NOT ported here. Only sections that
-// were publicly displayed on the original site are included.
+// `blog` is the public writing section, ported from the old Quartz site. NOTE:
+// the old Quartz site hid several folders via `ignorePatterns` (General Notes,
+// Leetcode Notes, School Notes, Go Notes) — those were private and are
+// intentionally NOT ported. The Odin Project pages were merged into `projects`.
 //
-// Each writing collection is a folder of markdown files under
-// src/content/<collection>/ and is rendered by the dynamic route
-// src/pages/<collection>/[...slug].astro, with an index page at
-// src/pages/<collection>/index.astro.
+// The blog collection is a folder of markdown files under src/content/blog/ and
+// is rendered by the dynamic route src/pages/blog/[...slug].astro, with an index
+// page at src/pages/blog/index.astro.
 //
 // To add a new writing entry: drop a markdown file in the right folder with the
 // frontmatter below. Set `draft: true` to keep it out of the published site.
@@ -51,26 +49,4 @@ const blog = defineCollection({
   schema: writingSchema,
 });
 
-const odin = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/odin' }),
-  schema: writingSchema,
-});
-
-export const collections = { projects, blog, odin };
-
-// Metadata describing each public writing category. Used to build nav links and
-// the category index pages. Add an entry here when you add a new collection.
-export const WRITING_CATEGORIES = [
-  {
-    slug: 'blog',
-    name: 'Blog',
-    collection: 'blog' as const,
-    description: 'Thoughts and write-ups from events and projects.',
-  },
-  {
-    slug: 'odin',
-    name: 'The Odin Project',
-    collection: 'odin' as const,
-    description: 'Projects built while studying The Odin Project.',
-  },
-];
+export const collections = { projects, blog };

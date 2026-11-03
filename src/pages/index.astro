@@ -16,12 +16,10 @@ const projects = (await getCollection('projects')).sort(
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-// "Writing" sections surfaced on the home page (mirrors the sections the
-// original Quartz site displayed publicly).
-const writing = [
-  { slug: 'blog', name: 'Blog', description: 'Thoughts and write-ups from events and projects.' },
-  { slug: 'odin', name: 'The Odin Project', description: 'Projects built while studying The Odin Project.' },
-];
+// Unique tech tags across all projects, for the tag filter.
+const allTags = Array.from(
+  new Set(projects.flatMap((p) => p.data.tech))
+).sort((a, b) => a.localeCompare(b));
 ---
 
 <Base>
@@ -71,10 +69,19 @@ const writing = [
   <section id="projects">
     <div class="wrap">
       <h2 class="section-title">Projects</h2>
-      <p class="section-sub">Things I've built — add a new one by dropping a markdown file in <code>src/content/projects/</code>.</p>
-      <div class="grid">
+      <p class="section-sub">Things I've built. Filter by tech:</p>
+      <div class="filters" id="project-filters">
+        <button class="filter-btn is-active" data-filter="all">All</button>
+        {allTags.map((t) => (
+          <button class="filter-btn" data-filter={t}>{t}</button>
+        ))}
+      </div>
+      <div class="grid" id="project-grid">
         {projects.map((p) => (
-          <article class={`card ${p.data.featured ? 'featured' : ''}`}>
+          <article
+            class={`card ${p.data.featured ? 'featured' : ''}`}
+            data-tech={p.data.tech.join('|')}
+          >
             {p.data.image && (
               <img class="card-img" src={`${base}${p.data.image}`} alt={p.data.title} loading="lazy" />
             )}
@@ -95,6 +102,7 @@ const writing = [
           </article>
         ))}
       </div>
+      <p class="no-results" id="no-results" hidden>No projects match that filter.</p>
     </div>
   </section>
 
@@ -184,20 +192,85 @@ const writing = [
     </div>
   </section>
 
-  <!-- Writing -->
+  <!-- Blog -->
   <section id="writing">
     <div class="wrap">
-      <h2 class="section-title">Writing</h2>
-      <p class="section-sub">Blog posts and project write-ups.</p>
-      <div class="grid">
-        {writing.map((w) => (
-          <a class="card" href={`${base}/${w.slug}`}>
-            <h3>{w.name} →</h3>
-            <p class="desc">{w.description}</p>
-          </a>
-        ))}
-      </div>
-      <p style="margin-top:20px"><a href={`${base}/writing`}>Browse all writing →</a></p>
+      <h2 class="section-title">Blog</h2>
+      <p class="section-sub">Thoughts and write-ups from events and projects.</p>
+      <a class="btn btn-ghost" href={`${base}/blog`}>Read the blog →</a>
     </div>
   </section>
+
+  <script is:inline>
+    // --- Project tag filtering ---
+    (() => {
+      const filters = document.getElementById('project-filters');
+      const cards = Array.from(document.querySelectorAll('#project-grid .card'));
+      const noResults = document.getElementById('no-results');
+      if (!filters) return;
+      filters.addEventListener('click', (e) => {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        const filter = btn.dataset.filter;
+        filters.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        let visible = 0;
+        cards.forEach((card) => {
+          const techs = (card.dataset.tech || '').split('|');
+          const show = filter === 'all' || techs.includes(filter);
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        if (noResults) noResults.hidden = visible !== 0;
+      });
+    })();
+
+    // --- Scroll fade-in (respects reduced motion) ---
+    (() => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const targets = document.querySelectorAll('section, .hero');
+      if (reduce || !('IntersectionObserver' in window)) {
+        targets.forEach((t) => t.classList.add('in-view'));
+        return;
+      }
+      targets.forEach((t) => t.classList.add('reveal'));
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      targets.forEach((t) => io.observe(t));
+    })();
+
+    // --- Active section highlight in nav ---
+    (() => {
+      const links = Array.from(document.querySelectorAll('.nav-links a[href*="#"]'));
+      if (!links.length) return;
+      const map = new Map();
+      links.forEach((l) => {
+        const id = l.getAttribute('href').split('#')[1];
+        const sec = id && document.getElementById(id);
+        if (sec) map.set(sec, l);
+      });
+      if (!map.size) return;
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              links.forEach((l) => l.classList.remove('active'));
+              map.get(entry.target)?.classList.add('active');
+            }
+          });
+        },
+        { rootMargin: '-45% 0px -50% 0px' }
+      );
+      map.forEach((_, sec) => io.observe(sec));
+    })();
+  </script>
 </Base>

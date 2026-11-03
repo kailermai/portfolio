@@ -406,3 +406,46 @@ footer .socials { display: flex; gap: 18px; justify-content: center; margin-bott
 }
 .prose th { background: var(--bg-soft); font-weight: 600; }
 .prose hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+/* ---------- Project tag filters ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.filter-btn {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.filter-btn:hover { border-color: var(--accent-2); color: var(--text); }
+.filter-btn.is-active {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: #fff;
+}
+.no-results { color: var(--text-muted); margin-top: 16px; }
+
+/* ---------- Active nav link ---------- */
+.nav-links a.active { color: var(--accent); }
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

@@ -43,19 +43,17 @@ page is pre-rendered to HTML at build time. Content comes from two places:
     │   └── site.ts           # ← EDIT: all structured home-page data
     ├── content/              # ← EDIT: markdown content
     │   ├── projects/         #   project cards (home page "Projects" grid)
-    │   ├── blog/             #   blog posts / project write-ups
-    │   └── odin/             #   The Odin Project pages
+    │   └── blog/             #   blog posts / project write-ups
     ├── layouts/
     │   ├── Base.astro        # <html>, nav, theme toggle, footer (wraps every page)
     │   └── Article.astro     # breadcrumb + prose wrapper for a single markdown entry
     ├── pages/                # Routes (file-based routing)
-    │   ├── index.astro       # home page ("/")
+    │   ├── index.astro       # home page ("/") — projects (with tag filter), etc.
     │   ├── blog/
     │   │   ├── index.astro   # "/blog" — lists blog entries
     │   │   └── [...slug].astro  # "/blog/<slug>" — renders one entry
-    │   └── odin/
-    │       ├── index.astro   # "/odin"
-    │       └── [...slug].astro  # "/odin/<slug>"
+    │   └── og/
+    │       └── [...route].ts # generates /og/*.png social preview images
     ├── plugins/
     │   └── rehype-base-assets.mjs  # prefixes /… URLs in markdown with the base path
     └── styles/
@@ -160,3 +158,27 @@ folders from the public site via `ignorePatterns`:
 Those were **private notes** and are **not** ported here — only the sections the
 original site displayed publicly (About Me, Blog, The Odin Project) were migrated.
 The source markdown still lives on the `v4` branch if any of it is ever needed.
+
+The Odin Project pages were **merged into the Projects grid** (see the
+`odin-*.md` files in `src/content/projects/`) rather than kept as a separate
+section.
+
+---
+
+## Built-in features
+
+- **Dark / light theme** toggle (persisted in `localStorage`), set before paint
+  to avoid a flash. See the inline scripts in `src/layouts/Base.astro`.
+- **Project tag filtering** — the Projects section renders a filter button per
+  unique `tech` tag; clicking filters the grid (vanilla JS in
+  `src/pages/index.astro`). New tags appear automatically from project frontmatter.
+- **Scroll reveal** — sections fade in on scroll via `IntersectionObserver`,
+  disabled under `prefers-reduced-motion`. Classes `.reveal` / `.in-view` in
+  `global.css`; the class is added by JS so no-JS users still see all content.
+- **Active-section nav highlight** — the nav link for the section in view gets
+  an `.active` class as you scroll.
+- **Auto-generated OG social images** — `src/pages/og/[...route].ts` uses
+  `astro-og-canvas` to render a 1200×630 PNG for the site and each blog post at
+  build time. `Base.astro` emits the Open Graph + Twitter meta tags. To give a
+  page its own card, pass `ogId` to `Base`/`Article` and add a matching entry in
+  the OG route's `pages` map.

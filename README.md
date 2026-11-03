@@ -73,11 +73,13 @@ Create/edit a markdown file in `src/content/projects/`. Frontmatter schema
 ---
 title: "My Project"
 description: "One-sentence summary."
-tech: [TypeScript, React]          # tag chips
-links:                              # optional external links
+tech: [TypeScript, React]          # tag chips shown on the card
+category: Web                      # filter bucket: Web | Mobile | Games | Tools | Other
+links:                             # optional external links
   - { label: "GitHub", url: "https://github.com/…" }
 featured: true                     # highlight with accent border
 order: 1                           # lower = earlier in the grid
+image: /assets/images/foo.png      # optional card screenshot (in public/assets/)
 ---
 Optional markdown body (not shown on the card today).
 ```
@@ -213,9 +215,13 @@ section.
 
 - **Dark / light theme** toggle (persisted in `localStorage`), set before paint
   to avoid a flash. See the inline scripts in `src/layouts/Base.astro`.
-- **Project tag filtering** — the Projects section renders a filter button per
-  unique `tech` tag; clicking filters the grid (vanilla JS in
-  `src/pages/index.astro`). New tags appear automatically from project frontmatter.
+- **Project category filtering** — the Projects section renders one filter
+  button per `category` that has projects (Web / Mobile / Games / Tools / Other),
+  plus "All". Clicking filters the grid (vanilla JS in `src/pages/index.astro`,
+  reading each card's `data-category`). Set a project's bucket via the `category`
+  frontmatter field. This is deliberately a small, meaningful set of buckets
+  rather than a button per tech tag (which produced 20+ buttons). The detailed
+  `tech` chips still show on each card.
 - **Scroll reveal** — sections fade in on scroll via `IntersectionObserver`,
   disabled under `prefers-reduced-motion`. Classes `.reveal` / `.in-view` in
   `global.css`; the class is added by JS so no-JS users still see all content.

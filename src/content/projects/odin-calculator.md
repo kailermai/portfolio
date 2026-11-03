@@ -2,6 +2,7 @@
 title: Odin Calculator
 description: An on-screen calculator built with HTML, CSS, and JavaScript — made while studying The Odin Project.
 tech: [HTML, CSS, JavaScript, The Odin Project]
+category: Web
 order: 11
 image: /assets/images/calculator-top.png
 links:

@@ -2,6 +2,7 @@
 title: NUSPlan (Orbital)
 description: An all-in-one productivity Android app designed for NUS students to improve academic schedule management and boost productivity. Developed under CP2106 Independent Software Development Project (Orbital).
 tech: [Flutter, Dart, Firebase, Python, FastAPI, Gemini API]
+category: Mobile
 featured: true
 order: 2
 links:

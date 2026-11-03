@@ -2,6 +2,7 @@
 title: 2D Idle Clicker Game
 description: A 2D idle clicker game created while taking Zenva Academy's "Craft a 2D Idle Clicker Game" course.
 tech: [Unity, C#]
+category: Games
 order: 7
 links:
   - label: Play

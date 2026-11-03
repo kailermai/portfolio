@@ -16,10 +16,12 @@ const projects = (await getCollection('projects')).sort(
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-// Unique tech tags across all projects, for the tag filter.
-const allTags = Array.from(
-  new Set(projects.flatMap((p) => p.data.tech))
-).sort((a, b) => a.localeCompare(b));
+// Project filter categories, in display order. Only show a filter button for a
+// category that actually has projects (keeps the row tidy).
+const CATEGORY_ORDER = ['Web', 'Mobile', 'Games', 'Tools', 'Other'] as const;
+const usedCategories = CATEGORY_ORDER.filter((c) =>
+  projects.some((p) => p.data.category === c)
+);
 ---
 
 <Base>
@@ -69,18 +71,18 @@ const allTags = Array.from(
   <section id="projects">
     <div class="wrap">
       <h2 class="section-title">Projects</h2>
-      <p class="section-sub">Things I've built. Filter by tech:</p>
+      <p class="section-sub">Things I've built. Filter by type:</p>
       <div class="filters" id="project-filters">
         <button class="filter-btn is-active" data-filter="all">All</button>
-        {allTags.map((t) => (
-          <button class="filter-btn" data-filter={t}>{t}</button>
+        {usedCategories.map((c) => (
+          <button class="filter-btn" data-filter={c}>{c}</button>
         ))}
       </div>
       <div class="grid" id="project-grid">
         {projects.map((p) => (
           <article
             class={`card ${p.data.featured ? 'featured' : ''}`}
-            data-tech={p.data.tech.join('|')}
+            data-category={p.data.category}
           >
             {p.data.image && (
               <img class="card-img" src={`${base}${p.data.image}`} alt={p.data.title} loading="lazy" />
@@ -216,8 +218,7 @@ const allTags = Array.from(
         btn.classList.add('is-active');
         let visible = 0;
         cards.forEach((card) => {
-          const techs = (card.dataset.tech || '').split('|');
-          const show = filter === 'all' || techs.includes(filter);
+          const show = filter === 'all' || card.dataset.category === filter;
           card.style.display = show ? '' : 'none';
           if (show) visible++;
         });

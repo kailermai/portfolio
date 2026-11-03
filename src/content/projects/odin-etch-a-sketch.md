@@ -2,6 +2,7 @@
 title: Odin Etch-a-Sketch
 description: A browser sketchpad somewhere between a drawing app and an Etch-A-Sketch — made while studying The Odin Project.
 tech: [HTML, CSS, JavaScript, The Odin Project]
+category: Web
 order: 10
 image: /assets/images/etch-a-sketch-top.png
 links:

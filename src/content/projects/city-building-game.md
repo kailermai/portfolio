@@ -2,6 +2,7 @@
 title: City Building Game
 description: A City Building game created through Zenva Academy's "Develop a City-Building Game with Unity" course.
 tech: [Unity, C#]
+category: Games
 order: 6
 image: /assets/images/citybuildinggame.png
 links:

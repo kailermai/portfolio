@@ -2,6 +2,7 @@
 title: Old Portfolio Website
 description: My first portfolio website, before I rebuilt it.
 tech: [HTML, Ruby, Jekyll]
+category: Web
 order: 8
 image: /assets/images/portfolio-website.png
 links:

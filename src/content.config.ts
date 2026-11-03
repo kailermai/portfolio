@@ -25,6 +25,11 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string(),
     tech: z.array(z.string()).default([]),
+    // Broad grouping used by the home-page project filter. Keep this list short
+    // and meaningful (a handful of buttons). Defaults to 'Other' if omitted.
+    category: z
+      .enum(['Web', 'Mobile', 'Games', 'Tools', 'Other'])
+      .default('Other'),
     links: z
       .array(z.object({ label: z.string(), url: z.string().url() }))
       .default([]),

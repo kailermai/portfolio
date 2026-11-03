@@ -2,6 +2,7 @@
 title: Cowsay Clone
 description: A Go-based clone of the classic 'cowsay' command-line tool.
 tech: [Go]
+category: Tools
 order: 4
 links:
   - label: GitHub

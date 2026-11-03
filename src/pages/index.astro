@@ -13,6 +13,15 @@ import {
 const projects = (await getCollection('projects')).sort(
   (a, b) => a.data.order - b.data.order
 );
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// "Writing" sections surfaced on the home page (mirrors the sections the
+// original Quartz site displayed publicly).
+const writing = [
+  { slug: 'blog', name: 'Blog', description: 'Thoughts and write-ups from events and projects.' },
+  { slug: 'odin', name: 'The Odin Project', description: 'Projects built while studying The Odin Project.' },
+];
 ---
 
 <Base>
@@ -66,6 +75,9 @@ const projects = (await getCollection('projects')).sort(
       <div class="grid">
         {projects.map((p) => (
           <article class={`card ${p.data.featured ? 'featured' : ''}`}>
+            {p.data.image && (
+              <img class="card-img" src={`${base}${p.data.image}`} alt={p.data.title} loading="lazy" />
+            )}
             <h3>{p.data.title}</h3>
             <p class="desc">{p.data.description}</p>
             {p.data.tech.length > 0 && (
@@ -167,6 +179,22 @@ const projects = (await getCollection('projects')).sort(
               </div>
             )}
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Writing -->
+  <section id="writing">
+    <div class="wrap">
+      <h2 class="section-title">Writing</h2>
+      <p class="section-sub">Blog posts and project write-ups.</p>
+      <div class="grid">
+        {writing.map((w) => (
+          <a class="card" href={`${base}/${w.slug}`}>
+            <h3>{w.name} →</h3>
+            <p class="desc">{w.description}</p>
+          </a>
         ))}
       </div>
     </div>

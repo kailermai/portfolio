@@ -40,10 +40,10 @@ const base = import.meta.env.BASE_URL;
       <div class="nav-inner">
         <a href={base} class="nav-brand">{site.name}</a>
         <div class="nav-links">
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#education">Education</a>
-          <a href="#activities">Activities</a>
+          <a href={`${base}#projects`}>Projects</a>
+          <a href={`${base}#education`}>Education</a>
+          <a href={`${base}blog`}>Blog</a>
+          <a href={`${base}odin`}>Odin</a>
           <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
         </div>
       </div>

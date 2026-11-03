@@ -3,6 +3,7 @@ title: Tower Defence Game
 description: A Tower Defence game created through Zenva Academy's "Create a Tower Defence Game in Unity" course.
 tech: [Unity, C#]
 order: 5
+image: /assets/images/towerdefencegame.png
 links:
   - label: Play
     url: https://kailermai.github.io/towerDefenceGame/WebBuild/index.html

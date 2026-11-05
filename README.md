@@ -216,9 +216,14 @@ section.
 
 ## Built-in features
 
+- **"Moss" styling.** A cool grey-green ground, soft bordered cards and one
+  moss-green accent, set in Schibsted Grotesk (self-hosted via
+  `@fontsource-variable/schibsted-grotesk`). Colours, radii and the font are CSS
+  variables at the top of `src/styles/global.css`.
 - **Dark / light theme** toggle (persisted in `localStorage`), set before paint
   to avoid a flash. Defaults to light mode on the first visit. See the inline
-  scripts in `src/layouts/Base.astro`.
+  scripts in `src/layouts/Base.astro`. Each theme is one block of variables in
+  `global.css` (`:root` and `:root[data-theme='dark']`).
 - **Project category filtering** — the Projects section renders one filter
   button per `category` that has projects (Web / Mobile / Games / Tools / Other),
   plus "All". Clicking filters the grid (vanilla JS in `src/pages/index.astro`,

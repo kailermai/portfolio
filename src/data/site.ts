@@ -27,6 +27,11 @@ export type Experience = {
   org: string;
   period: string;
   points?: string[];
+  // Optional. Entries with a tag are pinned as large tiles beside the hero
+  // ('Now' = accent tile, 'Next' = high-contrast tile). Entries without a tag
+  // are listed in an "Experience" tile further down the page, so when a role
+  // ends just remove its tag.
+  tag?: 'Now' | 'Next';
 };
 
 export const experience: Experience[] = [
@@ -34,12 +39,28 @@ export const experience: Experience[] = [
     role: 'Software Engineer Intern',
     org: 'Squarepoint Capital',
     period: 'Incoming',
+    tag: 'Next',
   },
   {
     role: 'Software Engineer Intern (Dev Infra)',
     org: 'TikTok',
     period: 'January 2026 – December 2026',
+    tag: 'Now',
   },
+];
+
+// Big-number tiles under the hero. Keep to 2–4 of your strongest results.
+// `value` is the large text, `unit` the smaller text beside it (optional).
+export type Highlight = { value: string; unit?: string; label: string };
+
+export const highlights: Highlight[] = [
+  {
+    value: 'Top 6',
+    unit: 'of 68 teams',
+    label: 'Grand Finalist, DSTA BrainHack TIL-AI 2026 (Advanced Track)',
+  },
+  { value: '13th', unit: 'place', label: 'Citadel Terminal Spring 2026 (APAC)' },
+  { value: "Dean's List", label: 'NUS, AY2024/2025 Semester 2' },
 ];
 
 export type EducationItem = {

@@ -1,4 +1,7 @@
 ---
+// Self-hosted variable fonts (no third-party font requests).
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/bricolage-grotesque';
 import '../styles/global.css';
 import { site } from '../data/site';
 
@@ -48,28 +51,27 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     </script>
   </head>
   <body>
-    <nav class="nav">
-      <div class="nav-inner">
+    <div class="shell">
+      <nav class="nav" aria-label="Primary">
         <a href={home} class="nav-brand">{site.name}</a>
         <div class="nav-links">
           <a href={`${home}#projects`}>Projects</a>
           <a href={`${home}#education`}>Education</a>
+          <a href={`${home}#activities`}>Activities</a>
           <a href={`${base}/blog`}>Blog</a>
           <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">Dark</button>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <slot />
+      <slot />
 
-    <footer>
-      <div class="wrap">
+      <footer class="footer">
+        <p>© {new Date().getFullYear()} {site.name}. Built with Astro.</p>
         <div class="socials">
           {site.socials.map((s) => <a href={s.url} target="_blank" rel="noopener">{s.label}</a>)}
         </div>
-        <p>© {new Date().getFullYear()} {site.name}. Built with Astro.</p>
-      </div>
-    </footer>
+      </footer>
+    </div>
 
     <script is:inline>
       const toggle = document.getElementById('theme-toggle');

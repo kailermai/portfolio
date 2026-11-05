@@ -14,20 +14,20 @@ const withBase = (p: string) => `${base.replace(/\/$/, '')}${p}`;
 ---
 
 <Base title={`${title} · Mai Kai Ler`} description={description} ogId={ogId}>
-  <article class="article">
-    <div class="wrap">
-      <nav class="crumbs">
-        <a href={withBase('/')}>Home</a>
-        <span>/</span>
-        <a href={withBase(`/${category.slug}`)}>{category.name}</a>
-        <span>/</span>
-        <span class="current">{title}</span>
-      </nav>
+  <main class="page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href={withBase('/')}>Home</a>
+      <span>/</span>
+      <a href={withBase(`/${category.slug}`)}>{category.name}</a>
+      <span>/</span>
+      <span class="current">{title}</span>
+    </nav>
+    <article class="tile article">
       <h1 class="article-title">{title}</h1>
       {description && <p class="article-desc">{description}</p>}
       <div class="prose">
         <slot />
       </div>
-    </div>
-  </article>
+    </article>
+  </main>
 </Base>

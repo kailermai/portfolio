@@ -109,10 +109,17 @@ extra wiring needed. Nothing else to touch.
 
 ### Edit structured home-page content
 
-Everything else on the home page (name, role, experience, education, modules,
-certifications, activities) lives in `src/data/site.ts` as typed arrays. Edit the
-data; the home page re-renders from it. For the current semester, set
+Everything else on the home page (name, role, experience, highlights, education,
+modules, certifications, activities) lives in `src/data/site.ts` as typed arrays.
+Edit the data; the home page re-renders from it. For the current semester, set
 `current: true` on its modules group to display the "Currently taking" label.
+
+- **Experience tiles.** An experience entry with `tag: 'Now'` or `tag: 'Next'`
+  is pinned as a large tile beside the hero. Entries without a tag are listed in
+  an "Experience" tile below the highlights (it only appears when there is one).
+- **Highlights.** The `highlights` array drives the big-number tiles under the
+  hero (`value`, optional `unit`, `label`). Keep it to 2–4 entries.
+- **Blog tile.** The home page lists the first three blog posts automatically.
 
 ### Add a brand-new content section (e.g. "notes")
 
@@ -216,9 +223,14 @@ section.
 
 ## Built-in features
 
+- **Bento design.** Every block is a rounded tile (`.tile`) on a tinted ground.
+  All colours, radii and fonts are CSS variables at the top of
+  `src/styles/global.css`; fonts (Manrope, Bricolage Grotesque) are self-hosted
+  via `@fontsource-variable/*`.
 - **Dark / light theme** toggle (persisted in `localStorage`), set before paint
   to avoid a flash. Defaults to light mode on the first visit. See the inline
-  scripts in `src/layouts/Base.astro`.
+  scripts in `src/layouts/Base.astro`. Each theme is one block of variables in
+  `global.css` (`:root` and `:root[data-theme='dark']`).
 - **Project category filtering** — the Projects section renders one filter
   button per `category` that has projects (Web / Mobile / Games / Tools / Other),
   plus "All". Clicking filters the grid (vanilla JS in `src/pages/index.astro`,

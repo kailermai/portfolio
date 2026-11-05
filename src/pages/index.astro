@@ -22,6 +22,13 @@ const CATEGORY_ORDER = ['Web', 'Mobile', 'Games', 'Tools', 'Other'] as const;
 const usedCategories = CATEGORY_ORDER.filter((c) =>
   projects.some((p) => p.data.category === c)
 );
+
+// "CS2106 Introduction to Operating Systems" -> code + name, so codes line up
+// in their own column. Entries without a module code are shown as-is.
+const splitModule = (mod: string) => {
+  const m = mod.match(/^([A-Z]{2,4}\d{4}[A-Z]{0,2})\s+(.*)$/);
+  return m ? { code: m[1], name: m[2] } : { code: '', name: mod };
+};
 ---
 
 <Base>
@@ -30,119 +37,122 @@ const usedCategories = CATEGORY_ORDER.filter((c) =>
     <div class="wrap">
       <p class="eyebrow">Hi, I'm</p>
       <h1>{site.name}</h1>
-      <p class="role">{site.role}</p>
-      <p class="tagline">{site.tagline}</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#projects">View my work</a>
-        {site.socials.map((s) => (
-          <a class="btn btn-ghost" href={s.url} target="_blank" rel="noopener">{s.label}</a>
-        ))}
+      <div class="hero-body">
+        <p class="role">{site.role}</p>
+        <p class="tagline">{site.tagline}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View my work</a>
+          {site.socials.map((s) => (
+            <a class="btn" href={s.url} target="_blank" rel="noopener">{s.label}</a>
+          ))}
+        </div>
       </div>
     </div>
   </header>
 
   <!-- Experience -->
-  <section id="experience">
-    <div class="wrap">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-sub">Where I've worked and what's next.</p>
-      <div class="timeline">
+  <section class="band" id="experience">
+    <div class="wrap band-grid">
+      <div class="band-head">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-sub">Where I've worked and what's next.</p>
+      </div>
+      <ul class="rows rows-3">
         {experience.map((e) => (
-          <div class="tl-item">
-            <div class="tl-head">
-              <div>
-                <span class="tl-role">{e.role}</span>
-                <span class="tl-org"> · {e.org}</span>
-              </div>
-              <span class="tl-period">{e.period}</span>
-            </div>
+          <li class="row">
+            <span class="row-title">{e.role}</span>
+            <span>{e.org}</span>
+            <span class="row-end">{e.period}</span>
             {e.points && (
-              <ul class="tl-points">
+              <ul class="points row-full">
                 {e.points.map((p) => <li>{p}</li>)}
               </ul>
             )}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
   <!-- Projects -->
-  <section id="projects">
-    <div class="wrap">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-sub">Things I've built. Filter by type:</p>
-      <div class="filters" id="project-filters">
-        <button class="filter-btn is-active" data-filter="all">All</button>
-        {usedCategories.map((c) => (
-          <button class="filter-btn" data-filter={c}>{c}</button>
-        ))}
+  <section class="band" id="projects">
+    <div class="wrap band-grid">
+      <div class="band-head">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-sub">Things I've built. Filter by type:</p>
       </div>
-      <div class="grid" id="project-grid">
-        {projects.map((p) => (
-          <article
-            class="card"
-            data-category={p.data.category}
-          >
-            <div class="card-heading">
-              <h3>{p.data.title}</h3>
-              {p.data.image && (
-                <img class="card-img" src={`${base}${p.data.image}`} alt={p.data.title} loading="lazy" />
-              )}
-            </div>
-            <p class="desc">{p.data.description}</p>
-            {p.data.tech.length > 0 && (
-              <div class="tags">
-                {p.data.tech.map((t) => <span class="tag">{t}</span>)}
+      <div>
+        <div class="filters" id="project-filters" role="group" aria-label="Filter projects by type">
+          <button class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+          {usedCategories.map((c) => (
+            <button class="filter-btn" data-filter={c} aria-pressed="false">{c}</button>
+          ))}
+        </div>
+        <div class="grid" id="project-grid">
+          {projects.map((p) => (
+            <article class="card" data-category={p.data.category}>
+              <div class="card-heading">
+                <h3>{p.data.title}</h3>
+                {p.data.image && (
+                  <img class="card-img" src={`${base}${p.data.image}`} alt={p.data.title} loading="lazy" />
+                )}
               </div>
-            )}
-            {p.data.links.length > 0 && (
-              <div class="card-links">
-                {p.data.links.map((l) => (
-                  <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>
-                ))}
+              <div class="card-text">
+                <p class="desc">{p.data.description}</p>
+                {p.data.tech.length > 0 && (
+                  <div class="tags">
+                    {p.data.tech.map((t) => <span class="tag">{t}</span>)}
+                  </div>
+                )}
+                {p.data.links.length > 0 && (
+                  <div class="card-links">
+                    {p.data.links.map((l) => (
+                      <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
+        <p class="no-results" id="no-results" hidden>No projects match that filter.</p>
       </div>
-      <p class="no-results" id="no-results" hidden>No projects match that filter.</p>
     </div>
   </section>
 
   <!-- Education -->
-  <section id="education">
-    <div class="wrap">
-      <h2 class="section-title">Education</h2>
-      <p class="section-sub">My academic journey and achievements.</p>
-      <div class="timeline">
+  <section class="band" id="education">
+    <div class="wrap band-grid">
+      <div class="band-head">
+        <h2 class="section-title">Education</h2>
+        <p class="section-sub">My academic journey and achievements.</p>
+      </div>
+      <ul class="rows rows-3">
         {education.map((e) => (
-          <div class="tl-item">
-            <div class="tl-head">
-              <div>
-                <span class="tl-role">{e.degree}</span>
-                <span class="tl-org"> · {e.school}</span>
-              </div>
-              <span class="tl-period">{e.period}</span>
-            </div>
+          <li class="row">
+            <span class="row-title">{e.degree}</span>
+            <span>{e.school}</span>
+            <span class="row-end">{e.period}</span>
             {e.points && (
-              <ul class="tl-points">
+              <ul class="points row-full">
                 {e.points.map((p) => (
                   <li>{p.url ? <a href={p.url} target="_blank" rel="noopener">{p.text} ↗</a> : p.text}</li>
                 ))}
               </ul>
             )}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
   <!-- Modules -->
-  <section id="modules">
-    <div class="wrap">
-      <h2 class="section-title">Coursework</h2>
-      <p class="section-sub">Current modules and past coursework at NUS.</p>
+  <section class="band" id="modules">
+    <div class="wrap band-grid">
+      <div class="band-head">
+        <h2 class="section-title">Coursework</h2>
+        <p class="section-sub">Current modules and past coursework at NUS.</p>
+      </div>
       <div class="mods-grid">
         {modules.map((m) => (
           <div class:list={['mod-block', { current: m.current }]}>
@@ -151,7 +161,14 @@ const usedCategories = CATEGORY_ORDER.filter((c) =>
               {m.current && <span class="course-status">Currently taking</span>}
             </h3>
             <ul>
-              {m.mods.map((mod) => <li>{mod}</li>)}
+              {m.mods.map((mod) => {
+                const { code, name } = splitModule(mod);
+                return code ? (
+                  <li><span class="mod-code">{code}</span><span>{name}</span></li>
+                ) : (
+                  <li><span class="mod-name-only">{name}</span></li>
+                );
+              })}
             </ul>
           </div>
         ))}
@@ -160,51 +177,63 @@ const usedCategories = CATEGORY_ORDER.filter((c) =>
   </section>
 
   <!-- Certifications -->
-  <section id="certifications">
-    <div class="wrap">
-      <h2 class="section-title">Certifications</h2>
-      <p class="section-sub">Credentials I've earned.</p>
-      <div class="list-grid">
-        {certifications.map((c) => (
-          <div class="mini">
-            <div class="t">
-              {c.url ? <a href={c.url} target="_blank" rel="noopener">{c.name} ↗</a> : c.name}
-            </div>
-            <div class="m">{c.issuer} · <span class="date">{c.date}</span></div>
-            {c.credentialId && <span class="badge">ID: {c.credentialId}</span>}
-          </div>
-        ))}
+  <section class="band" id="certifications">
+    <div class="wrap band-grid">
+      <div class="band-head">
+        <h2 class="section-title">Certifications</h2>
+        <p class="section-sub">Credentials I've earned.</p>
       </div>
+      <ul class="rows rows-3">
+        {certifications.map((c) => (
+          <li class="row">
+            <span class="row-title">
+              {c.url ? <a href={c.url} target="_blank" rel="noopener">{c.name} ↗</a> : c.name}
+            </span>
+            <span>{c.issuer}</span>
+            <span class="row-end date">{c.date}</span>
+            {c.credentialId && <span class="badge row-full">ID: {c.credentialId}</span>}
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
   <!-- Activities -->
-  <section id="activities">
-    <div class="wrap">
-      <h2 class="section-title">Hackathons, CTFs &amp; Activities</h2>
-      <p class="section-sub">Competitions and co-curriculars I've taken part in.</p>
-      <div class="list-grid">
-        {activities.map((a) => (
-          <div class="mini">
-            <div class="t">{a.name}</div>
-            <div class="m"><span class="date">{a.date}</span>{a.note ? ` · ${a.note}` : ''}</div>
-            {a.links && (
-              <div class="links">
-                {a.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>)}
-              </div>
-            )}
-          </div>
-        ))}
+  <section class="band" id="activities">
+    <div class="wrap band-grid">
+      <div class="band-head">
+        <h2 class="section-title">Hackathons, CTFs &amp; Activities</h2>
+        <p class="section-sub">Competitions and co-curriculars I've taken part in.</p>
       </div>
+      <ul class="rows rows-dated">
+        {activities.map((a) => (
+          <li class="row">
+            <span class="row-soft date">{a.date}</span>
+            <span>
+              <span class="row-title">{a.name}</span>
+              {a.note && <span><br />{a.note}</span>}
+            </span>
+            {a.links ? (
+              <span class="row-links">
+                {a.links.map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>)}
+              </span>
+            ) : <span></span>}
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
   <!-- Blog -->
-  <section id="writing">
-    <div class="wrap">
-      <h2 class="section-title">Blog</h2>
-      <p class="section-sub">Thoughts and write-ups from events and projects.</p>
-      <a class="btn btn-ghost" href={`${base}/blog`}>Read the blog →</a>
+  <section class="band" id="writing">
+    <div class="wrap band-grid">
+      <div class="band-head">
+        <h2 class="section-title">Blog</h2>
+      </div>
+      <div>
+        <p class="blog-lede">Thoughts and write-ups from events and projects.</p>
+        <a class="btn" href={`${base}/blog`}>Read the blog →</a>
+      </div>
     </div>
   </section>
 
@@ -219,8 +248,12 @@ const usedCategories = CATEGORY_ORDER.filter((c) =>
         const btn = e.target.closest('.filter-btn');
         if (!btn) return;
         const filter = btn.dataset.filter;
-        filters.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('is-active'));
+        filters.querySelectorAll('.filter-btn').forEach((b) => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-pressed', 'false');
+        });
         btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
         let visible = 0;
         cards.forEach((card) => {
           const show = filter === 'all' || card.dataset.category === filter;

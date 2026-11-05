@@ -216,9 +216,18 @@ section.
 
 ## Built-in features
 
+- **"Ink" design.** The site is set in a single ink colour on paper, with one
+  red reserved for state (active nav link, active filter, focus, "Currently
+  taking"). Section titles sit in a left margin column and stay in view while
+  you scroll their section; content is laid out as aligned rows. Colours, column
+  widths and fonts are CSS variables at the top of `src/styles/global.css`.
+  Fonts (Atkinson Hyperlegible Next and Mono) are self-hosted via
+  `@fontsource-variable/*`.
 - **Dark / light theme** toggle (persisted in `localStorage`), set before paint
   to avoid a flash. Defaults to light mode on the first visit. See the inline
-  scripts in `src/layouts/Base.astro`.
+  scripts in `src/layouts/Base.astro`. Light is blue ink on paper; dark is chalk
+  on blueprint blue. Each is one block of variables in `global.css` (`:root` and
+  `:root[data-theme='dark']`).
 - **Project category filtering** — the Projects section renders one filter
   button per `category` that has projects (Web / Mobile / Games / Tools / Other),
   plus "All". Clicking filters the grid (vanilla JS in `src/pages/index.astro`,

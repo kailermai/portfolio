@@ -30,14 +30,14 @@ export const { getStaticPaths, GET } = OGImageRoute({
     title: page.title,
     description: page.description,
     bgGradient: [
-      [246, 244, 239],
-      [246, 244, 239],
+      [238, 240, 236],
+      [238, 240, 236],
     ],
-    border: { color: [145, 69, 47], width: 3, side: 'inline-start' },
+    border: { color: [29, 107, 76], width: 3, side: 'inline-start' },
     padding: 60,
     font: {
-      title: { color: [41, 39, 35], size: 64, weight: 'Bold' },
-      description: { color: [103, 97, 89], size: 32 },
+      title: { color: [28, 38, 32], size: 64, weight: 'Bold' },
+      description: { color: [86, 99, 90], size: 32 },
     },
   }),
 });
